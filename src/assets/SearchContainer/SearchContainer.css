@@ -1,0 +1,110 @@
+.searchcontainer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 50%;
+  transform-origin: top right;
+  transform: scale(0,0);
+  background-color: var(--filterModal-backgroundColor);
+  transition: transform 500ms;
+  z-index: 1  ;
+}
+.searchcontainer::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0 ;
+    height: 60px;
+    width: 60px;
+    border-bottom-left-radius: 50%;
+    background-color: var(--modalContent-backgroundcolor);
+    opacity: 0;
+    transition: opacity 500ms;
+}
+.searchcontainer > *{
+    display: none;
+    transform: scale(0);
+}
+.searchcontainer.scaled {
+    transform: scale(1);
+    border-radius: 0;
+}
+.searchcontainer.scaled::after{
+    opacity: 1;
+}
+.searchcontainer.scaled .anothersearchicon{
+    display: block;
+    animation: rotatedsearchicon 500ms linear both;
+}
+@keyframes  rotatedsearchicon{
+    from{
+        transform: rotate(0deg) scale(1);
+    }
+    to{
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.searchsystem{
+    transform: scale(0);
+    height: 50%;
+    width: 100%;
+    padding: 20px;
+}
+.search-heading,.search-note,.search-summary{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.search-summary{
+    margin-top: 15px;
+}
+.searchsystem .searchplace{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-radius: 20px;
+    height: 30px;
+    background-color: var(--modalContent-backgroundcolor);
+    padding: 20px;
+    max-width: 290px;
+    margin: auto;
+}
+.searchsystem .searchplace input{
+   border: none;
+   outline: none;
+   font-size: 1rem;
+   background-color: var(--modalContent-backgroundcolor);
+   color: var(--color);
+}
+.searchresults{
+    height: 300px;
+    background-color: var(--modalContent-backgroundcolor);
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+

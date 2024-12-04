@@ -1,0 +1,13 @@
+.greetings{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+.greetings .greetings-message{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.greetings .date{
+    opacity: 0.8;
+}

@@ -1,0 +1,22 @@
+.profile-container-modal{
+    position: absolute;
+    background-color: white;
+    top: 38px;
+    left: 0px;
+    cursor: default;
+    box-shadow: 0 0 5px gray;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 120px;
+}
+.authenticaton-options{
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid;
+    padding-left: 10px;
+    padding-block: 4px;
+    font-size: 1.01rem;
+    width: 100%;
+    text-align: left;    
+}

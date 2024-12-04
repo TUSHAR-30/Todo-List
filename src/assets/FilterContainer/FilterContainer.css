@@ -1,0 +1,67 @@
+.filterby-container{
+    position: relative;
+}
+.filterby-container > button{
+    border: 1px solid var(--border-color);
+    background-color: var(--buttonBackground-color);
+    color: var(--color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+.filterby-modal{
+    position: absolute;
+    top: 2.2rem;
+    z-index: 1;
+    height: 180px;
+    width: 320px;
+    box-shadow: 0.5px 0.5px 3px var(--border-color);
+    background-color: var(--filterModal-backgroundColor);
+    padding: 10px;
+    border-radius: 5px;
+    animation: filtermodalopen 0.2s linear;
+    transform-origin: left top;
+}
+@keyframes  filtermodalopen{
+    from{
+        transform: scale(0.3);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+.filterby-modal header{
+    display: flex;
+    gap: 10px;
+}
+.datecontainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 2px;
+}
+.datecontainer > span{
+  font-size: 12px;
+  opacity: 0.8;
+}
+.filterby-list{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.filterby-listitem{
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+    padding: 3px;
+    box-shadow: -0.2px 0 2px var(--border-color),1px 0 2px var(--border-color);
+}
+.filterby-listitem label{
+    flex-grow: 1;
+}
+.filterby-listitem input,label{
+    cursor: pointer;
+}
+.checkedfilter,.filterby-listitem:hover{
+    background-color: var(--background-color);
+}

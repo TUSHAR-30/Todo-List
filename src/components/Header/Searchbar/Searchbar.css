@@ -1,0 +1,28 @@
+.searchbar{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    height: 35px;
+    width: 35px;
+}
+.searchbar-buttons{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchbar-buttons * {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.cancel-icon{
+    opacity: 0;
+}
+.searchbar-active .cancel-icon{
+    transition: opacity 1000ms ;
+    opacity: 1;
+}
+.searchbar-active .searchbar-icon{
+    opacity: 0;
+}

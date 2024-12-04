@@ -1,0 +1,50 @@
+.sortby-container{
+    position: relative;
+}
+.sortby-container > button{
+    border: 1px solid var(--border-color);
+    background-color: var(--buttonBackground-color);
+    color: var(--color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+.sortby-modal{
+    position: absolute;
+    top: 2.2rem;
+    z-index: 1;
+    height: 120px;
+    width: 170px;
+    background-color: var(--filterModal-backgroundColor); 
+    box-shadow: 0.5px 0.5px 3px var(--border-color);
+    padding: 10px;
+    border-radius: 5px;
+    animation: sortmodalopen 0.2s linear ;
+    transform-origin: left top;
+}
+@keyframes  sortmodalopen{
+    from{
+        transform: scale(0.3);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+.sortby-list{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.sortby-listitem{
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+    /* border: 1px solid var(--border-color); */
+    padding: 3px;
+    /* background-color: var(--filterModal-backgroundColor); */
+    box-shadow: -0.2px 0 2px var(--border-color),1px 0 2px var(--border-color);
+    font-size: 0.75rem;
+}
+.checkedsort,.sortby-listitem:hover{
+    background-color: var(--background-color);
+}

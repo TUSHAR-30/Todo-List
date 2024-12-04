@@ -1,0 +1,18 @@
+.add-task{
+    margin-top: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+.add-task > button{
+    background-color: var(--buttonBackground-color);
+    color: var(--color);
+    border:none;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.0rem;
+    padding: 0.4rem;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center ;
+    justify-content: center;
+}

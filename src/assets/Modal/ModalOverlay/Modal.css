@@ -1,0 +1,35 @@
+/* Modal.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--modalOverlay-backgroundcolor); /* semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    z-index: 2;
+}
+
+.modal-content {
+    background-color: var(--modalContent-backgroundcolor);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 547px;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px var(--modalContent-boxShadow);
+    position: relative;
+    transform: scale(0);
+    scrollbar-gutter: stable both-edges;
+    animation: modalanimation 0.3s linear forwards;
+}
+@keyframes modalanimation {
+    to{
+        transform: scale(1);
+    }
+}
+

@@ -1,0 +1,43 @@
+.header{
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+
+.app-name{
+    background: linear-gradient(90deg, #ff6ec4, #7873f5); /* Gradient colors */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header .header-actions{
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    position: absolute;
+    right: 0;
+}
+.header .header-actions > *{
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid ;
+    border-radius: 50%;
+    background-color: var(--buttonBackground-color);
+}
+.mode{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:625px) {
+    .header{
+        justify-content: space-between;
+    }
+    .header h1{
+        transform-origin: left;
+        transform: scale(0.7);
+    }
+}

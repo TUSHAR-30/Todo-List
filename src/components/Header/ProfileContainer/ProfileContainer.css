@@ -1,0 +1,22 @@
+
+.profile-photo-small{
+    width: 23px;
+}
+.login{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 36px;
+    display: -webkit-box;          /* Enables a flexible box layout */
+    -webkit-box-orient: vertical;  /* Specifies the orientation of the box as vertical */
+     -webkit-line-clamp: 1;        /* Limits the text to 1 lines */
+      overflow: hidden;             /* Hides any text overflow */
+}
+.header .header-actions .profile-container{
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    position: relative;
+}
+.header .header-actions .profile-container .profile{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

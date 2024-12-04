@@ -1,0 +1,60 @@
+:root {
+  --border-color: black;
+  --buttonBackground-color: white;
+  --background-color: #f4eeff;
+  --color: black;
+  --modalOverlay-backgroundcolor: rgba(0, 0, 0, 0.5);
+  --modalContent-backgroundcolor: white;
+  --modalContent-boxShadow: rgba(0, 0, 0, 0.3);
+  --filterModal-backgroundColor:#d2c2ef;
+  --tasks-backgroundColor:linear-gradient(to right,rgba(255,255,255,0.3),white);
+  --task-hover-backgroundColor: #eaeaea;
+  --searchicon-color:white;
+  --scrollbar-boxShadow:inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+.darkmode {
+  --border-color: white;
+  --buttonBackground-color: black;
+  --background-color: black;
+  --color: white;
+  --modalOverlay-backgroundcolor: rgba(0, 0, 0, 0.5);
+  --modalContent-backgroundcolor: rgb(36, 34, 34);
+  --modalContent-boxShadow: rgba(0, 0, 0, 0.3);
+  --filterModal-backgroundColor:rgb(87, 84, 84);
+  --tasks-backgroundColor:black;
+  --task-hover-backgroundColor: rgb(48, 47, 47);
+  --searchicon-color:black;
+  --scrollbar-boxShadow:inset 0 0 5px rgba(255,255,255,0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background: var(--filterModal-backgroundColor);
+  box-shadow: var(--scrollbar-boxShadow);
+}
+
+button {
+  cursor: pointer;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.react-datepicker__input-container input {
+  background-color: var(--background-color); /* Your desired background color */
+  border: 1px solid var(--border-color); /* Optional: change border */
+  padding: 3px;
+  color: var(--color);
+}
+
+.react-datepicker__close-icon {
+  right: -28px; /* Increase this value to move it further to the right */
+}
