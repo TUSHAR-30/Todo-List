@@ -7,7 +7,7 @@ import Notification from './assets/Notification/Notification'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import UpdatePasswordPage from './pages/UpdatePasswordPage/UpdatePasswordPage'
 import ProtectedRoute from './ProtectedRoute'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import TasksContext from './Context/TasksContext'
 
 function App() {

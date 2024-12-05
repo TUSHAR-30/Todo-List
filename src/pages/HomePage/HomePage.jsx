@@ -9,9 +9,9 @@ import Tasks from '../../components/Tasks/Tasks'
 import "./HomePage.css"
 
 function HomePage() {
-    return (
+    return   (
         <div className='homepage'>
-            <div className="homepage-content">
+              <div className="homepage-content">
                 <SearchContainer />
                 <Header />
                 <Greetings />

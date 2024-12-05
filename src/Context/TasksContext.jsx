@@ -21,7 +21,6 @@ export function TasksProvider({ children }) {
         const response = await axios.get(`${SERVER_URL}/tasks`, {
             withCredentials: true
         });
-        console.log(response);
         setTasks(response.data.data.tasks)
     }
 
@@ -31,10 +30,11 @@ export function TasksProvider({ children }) {
                 const response = await axios.get(`${SERVER_URL}/user/me`, {
                     withCredentials: true
                 });
-                setUserProfile(response.data.user)
+                const data=response.data
+                setUserProfile(data.user)
                 await fetchTasks()
             } catch (error) {
-                console.error(error);
+                console.log(error);
             }
         }
         fetchUserProfile(); 
