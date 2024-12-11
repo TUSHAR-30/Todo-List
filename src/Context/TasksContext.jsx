@@ -11,6 +11,7 @@ const TasksContext = createContext();
 export function TasksProvider({ children }) {
     const [tasks, setTasks] = useState([]);
     const [userProfile, setUserProfile] = useState(null);
+    const [loaderActive,setLoaderActive]=useState(true)
     const [selectedFilter, setSelectedFilter] = useState("All Tasks");
     const [filterStartDate, setFilterStartDate] = useState("")
     const [filterEndDate, setFilterEndDate] = useState("")
@@ -33,15 +34,17 @@ export function TasksProvider({ children }) {
                 const data=response.data
                 setUserProfile(data.user)
                 await fetchTasks()
+                setLoaderActive(false);
             } catch (error) {
                 console.log(error);
+                setLoaderActive(false);
             }
         }
         fetchUserProfile(); 
     }, [])
 
     return (
-        <TasksContext.Provider value={{ tasks, userProfile, selectedFilter, filterStartDate, filterEndDate, selectedSort, dateRange, setTasks, setUserProfile, setSelectedFilter, setFilterStartDate, setFilterEndDate, setSelectedSort, setDateRange , fetchTasks }}>
+        <TasksContext.Provider value={{ tasks, userProfile, loaderActive , selectedFilter, filterStartDate, filterEndDate, selectedSort, dateRange, setTasks, setUserProfile, setSelectedFilter, setFilterStartDate, setFilterEndDate, setSelectedSort, setDateRange , fetchTasks }}>
             {children}
         </TasksContext.Provider>
     );

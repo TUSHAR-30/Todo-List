@@ -8,18 +8,18 @@
     padding-right: 5px;
     background:var(--tasks-backgroundColor);
 }
-.notasks-animation{
+.notasks-animation-container{
     height: 160px;
-    /* z-index: -1; */
 }
-.notasks-animation .taskadding-request{
+
+.notasks-animation-container .taskadding-request{
     text-align: center;
     position: relative;
     top: -20px;
     opacity: 0;
     animation: taskaddingrequest 0.3s 2.5s linear forwards;
 }
-.notasks-animation .taskadding-request .openhands-emoji{
+.notasks-animation-container .taskadding-request .openhands-emoji{
     position: relative;
     animation: movingemoji 0.4s 5s linear alternate infinite;
 }

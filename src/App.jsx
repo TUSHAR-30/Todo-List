@@ -9,9 +9,15 @@ import UpdatePasswordPage from './pages/UpdatePasswordPage/UpdatePasswordPage'
 import ProtectedRoute from './ProtectedRoute'
 import { useContext, useEffect, useState } from 'react'
 import TasksContext from './Context/TasksContext'
+import Loader from './assets/Loader/Loader'
 
 function App() {
-  const {userProfile}=useContext(TasksContext);
+  const {userProfile,loaderActive}=useContext(TasksContext);
+
+   // Show loader until the profile/user fetch completes
+   if (loaderActive) {
+    return <Loader />;
+  }
 
   return (
     <>

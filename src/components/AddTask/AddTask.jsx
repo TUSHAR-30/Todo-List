@@ -1,13 +1,15 @@
 import { SERVER_URL } from '../../../config';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Modal from '../../assets/Modal/ModalOverlay/Modal';
 import AddTaskModalContent from '../../assets/Modal/AddTaskModalContent/AddTaskModalContent';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { IoAddOutline } from "react-icons/io5";
 import "./AddTask.css"
+import TasksContext from '../../Context/TasksContext';
 
 function AddTask() {
+  const {userProfile}=useContext(TasksContext);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskDetails,setTaskDetails]=useState({
@@ -16,17 +18,9 @@ function AddTask() {
     dueDate:"",
   })
 
-  async function openModal() {
-
-    try {
-      const response = await axios.get(`${SERVER_URL}/auth/authenticate`,{
-        withCredentials: true});
-      setIsModalOpen(true)
-    } catch (error) {
-      navigate("/Todo-List/login")
-      console.log(error);
-      return;
-    }
+  function openModal() {
+    if(userProfile) setIsModalOpen(true)
+    else navigate("/Todo-List/login")
   }
   
   return (
