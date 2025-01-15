@@ -5,8 +5,10 @@ import './LoginPage.css';
 import axios from 'axios';
 import useNotification from '../../Hooks/useNotification';
 import TasksContext from '../../Context/TasksContext';
+import Loader from '../../assets/Loader/Loader';
 
 const LoginPage = () => {
+    const [loaderActive,setLoaderActive]=useState(false);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +19,8 @@ const LoginPage = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         // Add your login logic here
+        setLoaderActive(true)
+
         try {
             const response = await axios.post(`${SERVER_URL}/auth/login`, {
               email: email,
@@ -25,10 +29,13 @@ const LoginPage = () => {
             { withCredentials: true } // Enables sending cookies
             );
             await fetchTasks();
+        setLoaderActive(false)
+
             navigate("/Todo-List/")
             addNotification("login", " User Login Successfully")
             setUserProfile(response.data.data.user)
           } catch (error) {
+            setLoaderActive(false)
             console.error(error.response.data);
             addNotification("login", "Incorrect email or password")
             return;
@@ -36,8 +43,10 @@ const LoginPage = () => {
 
     };
 
+
     return (
         <div className="login-page">
+             {loaderActive && <Loader />}
             <button className='back-button' onClick={()=>navigate("/Todo-List/")}>Back to Home page</button>
             <div className="login-container">
                 <h2>Login</h2>

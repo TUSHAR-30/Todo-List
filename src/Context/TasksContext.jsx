@@ -36,7 +36,7 @@ export function TasksProvider({ children }) {
                 await fetchTasks()
                 setLoaderActive(false);
             } catch (error) {
-                console.log(error);
+                // console.log(error);
                 setLoaderActive(false);
             }
         }
@@ -44,7 +44,7 @@ export function TasksProvider({ children }) {
     }, [])
 
     return (
-        <TasksContext.Provider value={{ tasks, userProfile, loaderActive , selectedFilter, filterStartDate, filterEndDate, selectedSort, dateRange, setTasks, setUserProfile, setSelectedFilter, setFilterStartDate, setFilterEndDate, setSelectedSort, setDateRange , fetchTasks }}>
+        <TasksContext.Provider value={{ tasks, userProfile, loaderActive , selectedFilter, filterStartDate, filterEndDate, selectedSort, dateRange, setTasks, setUserProfile, setSelectedFilter, setFilterStartDate, setFilterEndDate, setSelectedSort, setDateRange , fetchTasks , setLoaderActive }}>
             {children}
         </TasksContext.Provider>
     );

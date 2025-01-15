@@ -5,9 +5,11 @@ import './SignupPage.css';
 import axios from 'axios';
 import useNotification from '../../Hooks/useNotification';
 import TasksContext from '../../Context/TasksContext';
+import Loader from '../../assets/Loader/Loader';
 
 const SignupPage = () => {
     const navigate = useNavigate();
+    const [loaderActive,setLoaderActive]=useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -64,6 +66,7 @@ const SignupPage = () => {
         if (Object.values(finalErrors).some((error) => error)) {
             return;
         }
+        setLoaderActive(true)
 
         try {
             const response = await axios.post(`${SERVER_URL}/auth/signup`, {
@@ -74,11 +77,13 @@ const SignupPage = () => {
             },
             { withCredentials: true } // Enables sending cookies
             );
+            setLoaderActive(false)
 
             navigate("/Todo-List/");
             addNotification("signup", "Account Created Successfully");
             setUserProfile(response.data.data.user);
         } catch (error) {
+            setLoaderActive(false)
             console.log(error.response.data.message);
             addNotification("signup", "Email already exist");
         }
@@ -86,6 +91,7 @@ const SignupPage = () => {
 
     return (
         <div className="signup-page">
+            {loaderActive && <Loader />}
             <button className='back-button' onClick={() => navigate("/Todo-List/")}>Back to Home page</button>
             <div className="signup-container">
                 <h2>Sign Up</h2>

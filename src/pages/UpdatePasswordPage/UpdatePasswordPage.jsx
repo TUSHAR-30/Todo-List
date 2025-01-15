@@ -4,8 +4,10 @@ import "./UpdatePasswordPage.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useNotification from '../../Hooks/useNotification';
+import Loader from '../../assets/Loader/Loader';
 
 function UpdatePasswordPage() {
+    const [loaderActive,setLoaderActive]=useState(false);
     const navigate = useNavigate();
     const [notifications, closeNotification, addNotification] = useNotification()
     const [formData, setFormData] = useState({
@@ -55,6 +57,7 @@ function UpdatePasswordPage() {
             return;
         }
 
+        setLoaderActive(true)
 
         try {
             const response = await axios.patch(`${SERVER_URL}/user/updatePassword`, {
@@ -65,11 +68,15 @@ function UpdatePasswordPage() {
                 { withCredentials: true } // Enables sending cookies
             );
             console.log(response)
+        setLoaderActive(false)
+
             navigate("/Todo-List/")
             addNotification("update", " Password Updated Successfully")
             // setUserProfile(response.data.data.user)
         } catch (error) {
             console.log(error.response.data);
+        setLoaderActive(false)
+
             addNotification("fail", error.response.data.message)
             return;
         }
@@ -78,6 +85,8 @@ function UpdatePasswordPage() {
 
     return (
         <div className="updatePassword-page">
+            {loaderActive && <Loader />}
+
             <button className='back-button'
                 onClick={() => navigate("/Todo-List/")}
             >Back to Home page</button>

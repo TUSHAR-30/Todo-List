@@ -4,8 +4,11 @@ import TasksContext from '../../../Context/TasksContext';
 import useNotification from '../../../Hooks/useNotification';
 import useInputFocus from '../../../Hooks/useInputFocus';
 import axios from 'axios';
+import Loader from '../../Loader/Loader';
+import { flushSync } from 'react-dom';
 
 function EditTaskModalContent({ openedTask, setOpenedTask, setIsModalOpen }) {
+    const [loaderActive,setLoaderActive]=useState(false);
     const { tasks, setTasks } = useContext(TasksContext);
     const [isSaveButtonEnabled, setIsSaveButtonEnabled] = useState(true);
     const [notifications, closeNotification, addNotification] = useNotification()
@@ -30,6 +33,10 @@ function EditTaskModalContent({ openedTask, setOpenedTask, setIsModalOpen }) {
     }
 
     async function handleFormSubmit(e) {
+        // flushSync(()=>{
+        // })
+        setLoaderActive(true)
+        setIsModalOpen(false)
 
         try {
         e.preventDefault(); // Prevent default form submission
@@ -46,8 +53,8 @@ function EditTaskModalContent({ openedTask, setOpenedTask, setIsModalOpen }) {
             
             addNotification("edit", "Task Updated Successfully")
             setOpenedTask({ title: "", description: "", dueDate: "" });
-            setIsModalOpen(false)
         } catch (err) {
+            setLoaderActive(false)
             console.log(err);
         }
     }
@@ -63,6 +70,10 @@ function EditTaskModalContent({ openedTask, setOpenedTask, setIsModalOpen }) {
     useEffect(() => {
         validateForm();
     }, [openedTask])
+
+    if(loaderActive){
+        return <Loader />
+    }
 
     return (
         <>

@@ -5,6 +5,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import { GrEdit } from 'react-icons/gr';
 import './Task.css';
 import Modal from '../../assets/Modal/ModalOverlay/Modal';
+import Loader from '../../assets/Loader/Loader';
 import EditTaskModalContent from '../../assets/Modal/EditTaskModalContent/EditTaskModalContent';
 import ViewTaskModalContent from '../../assets/Modal/ViewTaskModalContent/ViewTaskModalContent';
 import DeleteTaskModalContent from '../../assets/Modal/DeleteTaskModalContent/DeleteTaskModalContent';
@@ -16,6 +17,7 @@ function Task({ task, draggedTaskIndex, setDraggedTaskIndex, isDraggable }) {
     const [openedTask, setOpenedTask] = useState({});
     const [openedTaskOperation, setOpenedTaskOperation] = useState('');
     const taskRef = useRef();
+    const [loaderActive,setLoaderActive]=useState(false);
 
     function handleDeleteAnimation() {
         taskRef.current.classList.add('deleted-task')
@@ -23,18 +25,21 @@ function Task({ task, draggedTaskIndex, setDraggedTaskIndex, isDraggable }) {
 
     async function toggleTaskCompletion(taskId) {
         // console.log(task.isCompleted)
+        setLoaderActive(true)
         try {
             const updatedTask = await axios.patch(`${SERVER_URL}/tasks/${taskId}`, {
                 isCompleted:(!task.isCompleted)
             }, {
                 withCredentials: true
             });
+        setLoaderActive(false)
             setTasks((prevTasks) =>
                 prevTasks.map((task) =>
                     task._id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
                 )
             );
         } catch (err) {
+        setLoaderActive(false)
             console.log(err)
         }
     }
@@ -62,6 +67,10 @@ function Task({ task, draggedTaskIndex, setDraggedTaskIndex, isDraggable }) {
 
         setTasks(updatedTasks);
         setDraggedTaskIndex(null); // Reset the dragged task index after drop
+    }
+
+    if(loaderActive){
+        return <Loader />
     }
 
     return (

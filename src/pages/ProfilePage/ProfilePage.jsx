@@ -9,10 +9,12 @@ import axios from 'axios';
 import useNotification from '../../Hooks/useNotification';
 import DeleteUserModalContent from '../../assets/Modal/DeleteUserModalContent/DeleteUserModalContent';
 import Modal from '../../assets/Modal/ModalOverlay/Modal';
+import Loader from '../../assets/Loader/Loader';
 
 
 const ProfilePage = () => {
     const navigate = useNavigate();
+    const [loaderActive,setLoaderActive]=useState(false);
     const { userProfile, setUserProfile } = useContext(TasksContext);
     const [notifications, closeNotification, addNotification] = useNotification()
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,6 +61,7 @@ const ProfilePage = () => {
             if (user.profilePhotoFile) {
                 formData.append("photo", user.profilePhotoFile);
             }
+            setLoaderActive(true)
 
             const response = await axios.patch(
                 `${SERVER_URL}/user/updateMe`,
@@ -68,10 +71,13 @@ const ProfilePage = () => {
                     headers: { 'Content-Type': 'multipart/form-data' }, // Required for file uploads
                 }
             );
+            setLoaderActive(false)
 
             setUserProfile(response.data.data.updatedUser);
             addNotification("profile", "Account Updated Successfully")
         } catch (error) {
+            setLoaderActive(false)
+
             console.log(error.response.data.message);
             addNotification("profile",error.response.data.message )
             return;
@@ -95,24 +101,26 @@ const ProfilePage = () => {
         })
     }, [userProfile])
 
+
     return (
         <div className="profile-page">
+            {loaderActive && <Loader />}
             <button className="back-button" onClick={() => navigate('/Todo-List/')}>Back to Home page</button>
             <div className="profile-card">
                 <div className="photo-container">
                     {user.profilePhoto ? (<img src={user.profilePhoto} alt="Profile" className="profile-photo" />) : (
                         <FaUserCircle className='profile-photo' />
                     )}
-                    <label htmlFor="upload-photo" className="edit-photo-icon">
-                        <FaPencilAlt />
-                        <input
-                            type="file"
-                            id="upload-photo"
-                            accept="image/*"
-                            style={{ display: 'none' }}
-                            onChange={handlePhotoChange}
-                        />
-                    </label>
+                        {/* <label htmlFor="upload-photo" className="edit-photo-icon">
+                            <FaPencilAlt />
+                            <input
+                                type="file"
+                                id="upload-photo"
+                                accept="image/*"
+                                style={{ display: 'none' }}
+                                onChange={handlePhotoChange}
+                            />
+                        </label> */}
                 </div>
                 <input
                     type="text"

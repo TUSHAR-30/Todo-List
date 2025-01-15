@@ -5,9 +5,12 @@ import { SearchProvider } from './Context/SearchContext.jsx'
 import { NotificationProvider } from './Context/NotificationContext.jsx'
 import App from './App.jsx'
 import "./index.css"
+import { Provider } from 'react-redux'
+import { store } from './store/index.js'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+  <Provider store={store}>
+<BrowserRouter>
     <TasksProvider>
       <SearchProvider>
         <NotificationProvider>
@@ -16,4 +19,5 @@ createRoot(document.getElementById('root')).render(
       </SearchProvider>
     </TasksProvider>
   </BrowserRouter>
+  </Provider>
 )

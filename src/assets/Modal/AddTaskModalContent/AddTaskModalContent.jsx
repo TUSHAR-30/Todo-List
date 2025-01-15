@@ -7,8 +7,10 @@ import useSpeechToText from '../../../Hooks/useSpeechToText';
 import useInputFocus from '../../../Hooks/useInputFocus';
 import axios from 'axios';
 import { SERVER_URL } from '../../../../config';
+import Loader from '../../Loader/Loader';
 
 function AddTaskModalContent({ taskDetails, setTaskDetails, setIsModalOpen }) {
+  const [loaderActive,setLoaderActive]=useState(false);
   const { tasks, setTasks } = useContext(TasksContext);
   const [isSaveButtonEnabled, setIsSaveButtonEnabled] = useState(false);
   const [notifications, closeNotification, addNotification] = useNotification()
@@ -50,12 +52,13 @@ function AddTaskModalContent({ taskDetails, setTaskDetails, setIsModalOpen }) {
   async function handleFormSubmit(e) {
     e.preventDefault(); // Prevent default form submission
     const newTask = new Task(taskDetails.title, taskDetails.description, false, today, taskDetails.dueDate);
-
+    setLoaderActive(true);
     try {
       const response = await axios.post(`${SERVER_URL}/tasks/`,{...newTask},{
         withCredentials: true
       });
       const createdTask=response.data.data.task;
+      setLoaderActive(false);
 
       setTasks([...tasks,createdTask])
       addNotification("add", "Task Added Successfully")
@@ -63,6 +66,7 @@ function AddTaskModalContent({ taskDetails, setTaskDetails, setIsModalOpen }) {
       setIsModalOpen(false)
     }
     catch (err) {
+      setLoaderActive(false);
       console.log(err)
     }
   }
@@ -78,6 +82,10 @@ function AddTaskModalContent({ taskDetails, setTaskDetails, setIsModalOpen }) {
   useEffect(() => {
     validateForm();
   }, [taskDetails])
+
+  if(loaderActive){
+    return <Loader />
+}
 
   return (
     <>
