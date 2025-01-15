@@ -5,6 +5,11 @@
 [https://tushar-30.github.io/Todo-List/](https://tushar-30.github.io/Todo-List/)
 
 <h2>Project Screenshots:</h2>
+
+![image alt](https://github.com/TUSHAR-30/Todo-List/blob/dced12fe4e56d77547e4061bc02cc723ce2e3276/temp.jpg)
+
+![image alt](https://github.com/TUSHAR-30/Todo-List/blob/dced12fe4e56d77547e4061bc02cc723ce2e3276/temp3.jpg)
+
   
 <h2>🧐 Features</h2>
 
